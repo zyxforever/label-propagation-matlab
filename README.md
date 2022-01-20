@@ -1,4 +1,5 @@
 # label-propagation-matlab
 
-| Penndigits | ACC | ARI | NMI |
-| ------ | | ---: | | :-: | 
+
+| Dataset          | ACC                   |  ARI            |  NMI      |
+| PenDigits     
