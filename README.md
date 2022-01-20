@@ -1,7 +1,23 @@
 # label-propagation-matlab
 
+## ACC of different methods 
+| Dataset          | LGC                   |  LNP             |        |
+|------------------|-------------------|---------------------- |-----------------|
+| PennDigits       |                   |                      |                  |
+| Mnist10K        |                   |                      |                  |
+| Digits        |                   |                      |                  |
 
-| Dataset          | ACC                   |  ARI            |  NMI      |
+
+## ARI of different methods 
+
+| Dataset          | LGC                   |  LNP            |        |
+|------------------|-------------------|---------------------- |-----------------|
+| PennDigits       |                   |                      |                  |
+| Mnist10K        |                   |                      |                  |
+| Digits        |                   |                      |                  |
+
+## NMI of different methods 
+| Dataset          | LGC                   |  LNP            |        |
 |------------------|-------------------|---------------------- |-----------------|
 | PennDigits       |                   |                      |                  |
 | Mnist10K        |                   |                      |                  |
