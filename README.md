@@ -3,9 +3,9 @@
 ## ACC of different methods 
 | Dataset          |           LGC         |  GFHF             |   LNP      | DLP | SIS  |
 |------------------|-------------------|---------------------- |-----------------|-----------------|-----------------|
-| PennDigits       |                   |                      |                  |      |          0.979258|
-| Mnist10K        |                   |                      |                  |
-| Digits        |                   |                      |                  |
+| PennDigits       |                   |                       |            |      |          0.979258|
+| Mnist10K        |                   |                       |            |    0.979258  |          |
+| Digits        |                   |                       |            |      |          |
 
 
 ## ARI of different methods 
