@@ -1,6 +1,6 @@
 # label-propagation-matlab
 
-## ACC of different methods 
+## ACC of different methods 10% Labeled 
 | Dataset          |           LGC     |  GFHF       |   LNP    | DLP       | SIS             |
 |------------------|-------------------|------------ |----------|-----------|-----------------|
 | PennDigits       |                   |             |          |           |    0.979258     |
@@ -8,7 +8,7 @@
 | Digits           |                   |             |          |           |          |
 
 
-## ARI of different methods 
+## ARI of different methods 10% Labeled 
 
 | Dataset          |           LGC         |  GFHF             |   LNP      | DLP | SIS  |
 |------------------|-------------------|---------------------- |-----------------|-----------------|-----------------|
@@ -16,7 +16,7 @@
 | Mnist10K         |                   |             |          | 0.803309  |          |
 | Digits        |                   |                      |                  |
 
-## NMI of different methods 
+## NMI of different methods  10% Labeled 
 | Dataset          |           LGC         |  GFHF             |   LNP      | DLP | SIS  |
 |------------------|-------------------|---------------------- |-----------------|-----------------|-----------------|
 | PennDigits       |                   |                      |                  |      |          0.953233|
