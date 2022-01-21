@@ -10,7 +10,7 @@
 
 ## ARI of different methods 
 
-| Dataset          | LGC                   |  LNP            |        |
+| Dataset          |           LGC         |  GFHF             |   LNP      | DLP | SIS  |
 |------------------|-------------------|---------------------- |-----------------|-----------------|-----------------|
 | PennDigits       |                   |                      |                  |      |          0.954593|
 | Mnist10K        |                   |                      |                  |
