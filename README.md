@@ -17,7 +17,7 @@
 | Digits        |                   |                      |                  |
 
 ## NMI of different methods 
-| Dataset          | LGC                   |  LNP            |        |
+| Dataset          |           LGC         |  GFHF             |   LNP      | DLP | SIS  |
 |------------------|-------------------|---------------------- |-----------------|-----------------|-----------------|
 | PennDigits       |                   |                      |                  |      |          0.953233|
 | Mnist10K        |                   |                      |                  |
