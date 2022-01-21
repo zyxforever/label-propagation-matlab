@@ -1,7 +1,7 @@
 # label-propagation-matlab
 
 ## ACC of different methods 
-| Dataset          | LGC                   |  LNP             |        |
+| Dataset          | GFHF                   |  LNP             |        |
 |------------------|-------------------|---------------------- |-----------------|
 | PennDigits       |                   |                      |                  |
 | Mnist10K        |                   |                      |                  |
