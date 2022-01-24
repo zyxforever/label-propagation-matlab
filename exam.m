@@ -23,11 +23,11 @@ k=length(unique(Y));
 num_per_class=fix(n*label_rate/100/k);
 num_labeled=fix(num_per_class*k);
 
-% ¸ù¾İÃ¿Àà´ø±êÇ©Êı¾İµÄ¸öÊı£¬ÌáÈ¡Êı¾İ 
+% æ ¹æ®æ¯ç±»å¸¦æ ‡ç­¾æ•°æ®çš„ä¸ªæ•°ï¼Œæå–æ•°æ® 
 Idx=[];
-%±êÇ©´Ó0¿ªÊ¼
+%æ ‡ç­¾ä»0å¼€å§‹
 for c=0:k-1
-%±êÇ©´Ó1¿ªÊ¼
+%æ ‡ç­¾ä»1å¼€å§‹
 % for c=1:k
     
     idx=find(Y(:,:)==c);
@@ -35,7 +35,7 @@ for c=0:k-1
     Idx=cat(1,Idx,idx1);
 end
 
-%ÌáÈ¡Ïà¹ØµÄ±êÇ© 
+%æå–ç›¸å…³çš„æ ‡ç­¾ 
 %input of label matrix
 Y_input=zeros(n,k);
 for id=1:length(Idx)
@@ -59,8 +59,6 @@ for j=1:times
 
 
 %propagation
-% [W,Dis,delta,D1,D]=Computation_SelfSC_W(X,k,m);
-% F=propagation(S,Y_input,method,t);
 [score,Y_P]=max(F,[],2);
 [~,acc,~,~,ari,nmi]=accuray_measures(Y_P,Y);
 result=cat(1,result,[acc,ari,nmi]);
