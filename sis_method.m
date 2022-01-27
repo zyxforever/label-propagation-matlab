@@ -1,6 +1,6 @@
 function [F]=sis_method(X,k,Y_input,n_iter)
 
-    k=k*1.5;
+    %k=k*1.5;
     %Similarity matrix
     [n,m]=size(X);
     dist = pdist2(X,X,'euclidean');
