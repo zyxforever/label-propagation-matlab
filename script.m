@@ -1,58 +1,72 @@
-%load statlog3;
-%load isolet3;
-load data_MNIST10k.mat
-X=data;
-Y=double(labels);
+% load data_PenDigits_bai.mat;
+% load data_PIE.mat;
+% load data_Umist.mat;
+% load data_MNIST10k.mat;
+% load data_Statlog.mat;
+load data_ORL_32.mat;
+% load data_COIL20.mat;
+% load data_Digits;
+% X=data;
+% X=fea;
+X=double(X);
+% Y=double(gt);
+Y=double(y);
 X=Normalized_data(X);
 
-% method  1'LGC',2''GFHF,
-m_list=['LGC ';'GFHF';'LNP ';'DLP ';'SIS '];
-method=4;
-t=4;
-label_rate=10;
-m=60;
-sigma=2*distances_means2(X)/m;
-k_num=20;
 [n,~]=size(X);
-k=length(unique(Y));
-num_per_class=fix(n*label_rate/100/k);
-num_labeled=fix(num_per_class*k);
+m=360;
+sigma=2*distances_means2(X)/m;
+sigma2=2*distances_means2(X)/90;
+sigma3=2*distances_means2(X)/1600;
+k_num=15;
+S1=S_matrix(X,1,sigma,k_num);
+S2=S_matrix(X,2,sigma,k_num);
+S3=S_matrix(X,3,sigma,8);
+[S4,P]=S_matrix(X,4,sigma,9);
+S5=S_matrix(X,5,sigma,2);
+R=[];
+for  rate=5:5:50
+    label_rate=rate/100;
+    for x=1:5
 
-% 根据每类带标签数据的个数，提取数据 
-Idx=[];
-for c=min(unique(Y)):max(unique(Y))
-    idx=find(Y(:,:)==c);
-    idx1=idx(randperm(numel(idx),num_per_class));
-    Idx=cat(1,Idx,idx1);
+    m_list=['LGC ';'GFHF';'LNP ';'DLP ';'SIS '];
+    times=20;
+    method=x;
+    t=4;
+    
+    k=length(unique(Y));
+    result=[];
+    for j=1:times
+        %Y_input
+        [~,Y_input]=Get_Constraints(Y,fix(label_rate*n),'PL');
+
+        Idx=find(sum(Y_input,2));
+
+
+    
+    
+        if method ==1 
+            F=propagation(S1,[],Y_input,method,t,Idx);
+        elseif method ==2
+            F=propagation(S2,[],Y_input,method,t,Idx);        
+        elseif method ==3
+            F=propagation(S3,[],Y_input,method,t,Idx);
+        elseif method ==4
+            F=propagation(S4,P,Y_input,method,t,Idx);     
+        elseif method ==5
+            F=propagation(S5,[],Y_input,method,t,Idx);
+        end
+
+        [score,Y_P]=max(F,[],2);
+        [~,acc,~,~,ari,nmi]=accuray_measures(Y_P,Y);
+        result=cat(1,result,[acc,ari,nmi]);
+    end
+    mean_result=mean(result);
+    result_std=std(result);
+    one_result=cat(2,cat(2,mean_result,result_std),label_rate);
+    R=cat(1,R,one_result);
+    
+%     fprintf('method:%s,label_rate:%3f,mean_result %f ',m_list(method,:),label_rate,mean_result);
+    end
 end
-
-%提取相关的标签 
-%input of label matrix
-Y_input=zeros(n,k);
-for id=1:length(Idx)
-    idx_row=Idx(id);
-    Y_input(idx_row,fix(Y(idx_row))+1)=1;
-end
-
-if method ==1 
-    F=lgc_method(X,sigma,Y_input,t);      
-elseif method ==2
-    F=gfhf_method(X,sigma,Y_input,t);        
-elseif method ==3
-    F=lnp_method(X,k_num,Y_input,t);        
-elseif method ==4
-    F=dlp_method(X,sigma,k_num,Y_input,t,Idx);        
-elseif method ==5
-    F=sis_method(X,k,Y_input,t);
-end
-
-%propagation
-% [W,Dis,delta,D1,D]=Computation_SelfSC_W(X,k,m);
-% F=propagation(S,Y_input,method,t);
-[score,Y_P]=max(F,[],2);
-[~,acc,~,~,ari,nmi]=accuray_measures(Y_P,Y);
-
-fprintf('method:%s,acc:%f,ari %f ,nmi:%f\n',m_list(method,:),acc,ari,nmi);
-
-
-
+save result_orl32 R;
